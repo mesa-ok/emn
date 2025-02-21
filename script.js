@@ -132,3 +132,23 @@ emailjs.send("service_0y6yz2j", "template_abc123", {
     data: data,                   // La data della prenotazione
     ora: ora                       // L'orario della prenotazione
 })
+
+document.getElementById('booking-form').addEventListener('submit', function(event) {
+    event.preventDefault();  // Impedisce il comportamento predefinito del modulo
+
+    var nome = document.getElementById('nome').value;
+    var parrucchiere = document.getElementById('parrucchiere').value;
+    var ora = document.getElementById('ora').value;
+    var data = document.getElementById('data').value;
+    var bookingCode = generateBookingCode();  // Funzione per generare un codice univoco
+
+    // Invia una notifica via email utilizzando EmailJS
+    emailjs.sendForm('service_0y6yz2j', 'template_krfrkie', this)
+        .then(function(response) {
+            console.log('Success', response);
+        }, function(error) {
+            console.log('Error', error);
+        });
+
+    alert('Prenotazione effettuata! Ti invieremo una conferma per email.');
+});

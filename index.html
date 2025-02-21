@@ -87,15 +87,17 @@
     <div class="servizio">
         <i class="fa fa-scissors"></i>
         <h3>Taglio</h3>
-        <img class="small-img" src="c:\Users\mesao\OneDrive\Desktop\Sito web per negozi\images   colore.jpeg" alt="Taglio di capelli">
+        <!-- Usa il percorso relativo per le immagini -->
+        <img class="small-img" src="c:\Users\mesao\OneDrive\Desktop\Sito web per negozi\8F2C9D6E-B3DB-42C7-B59A-F194A94A1999-1024x1024.jpg" alt="Taglio di capelli">
         <p>Tagli personalizzati per ogni esigenza.</p>
         <p class="prezzo">Prezzo: €30</p>
-        <p class="durata">Durata: 45 min</p> 
+        <p class="durata">Durata: 45 min</p>
     </div>
     <div class="servizio">
         <i class="fa fa-paint-brush"></i>
         <h3>Colore</h3>
-        <img class="small-img" src="c:\Users\mesao\OneDrive\Desktop\Sito web per negozi\8F2C9D6E-B3DB-42C7-B59A-F194A94A1999-1024x1024.jpg" alt="Colore di capelli">
+        <!-- Usa il percorso relativo per le immagini -->
+        <img class="small-img" src="c:\Users\mesao\OneDrive\Desktop\Sito web per negozi\download.jpeg" alt="Colore di capelli">
         <p>Colorazioni per un look fresco e vibrante.</p>
         <p class="prezzo">Prezzo: €50</p>
         <p class="durata">Durata: 90 min</p>
@@ -103,12 +105,14 @@
     <div class="servizio">
         <i class="fa fa-spa"></i>
         <h3>Trattamenti</h3>
-        <img class="small-img" src="c:\Users\mesao\OneDrive\Desktop\Sito web per negozi\download.jpeg" alt="Trattamenti">
+        <!-- Usa il percorso relativo per le immagini -->
+        <img class="small-img" src="c:\Users\mesao\OneDrive\Desktop\Sito web per negozi\images   colore.jpeg" alt="Trattamenti">
         <p>Trattamenti di bellezza e salute per i tuoi capelli.</p>
         <p class="prezzo">Prezzo: €40</p>
         <p class="durata">Durata: 60 min</p>
     </div>
 </section>
+
 
     <!--------------------------------------- Footer ------------------------------------->
     <footer>
@@ -133,7 +137,7 @@
 <section id="testimonianze">
     <h2>Testimonianze dei nostri clienti</h2>
     <div class="testimonianza">
-        <p>"Il miglior salone in cui sia mai stato! Il servizio è impeccabile e il personale è molto professionale. Tornerò sicuramente!"</p>
+        <p>"Il miglior salone in cui sia mai stato! Il servizio è impeccabile e il personale è molto professionale.Tornero sicuramente!"</p>
         <p><strong>Maria Rossi</strong></p>
     </div>
     <div class="testimonianza">
@@ -263,38 +267,7 @@
     <button type="submit">Prenota</button>
 </form>
 
- <!-- Script per EmailJS -->
- <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
- <script>
-     // Inizializza EmailJS con il tuo userID
-     emailjs.init("template_krfrkie");  // Sostituisci con il tuo User ID da EmailJS
 
-     // Gestione invio prenotazione
-     document.getElementById('booking-form').addEventListener('submit', function(event) {
-         event.preventDefault();  // Impedisce il comportamento predefinito del modulo
-
-         var nome = document.getElementById('nome').value;
-         var parrucchiere = document.getElementById('parrucchiere').value;
-         var ora = document.getElementById('ora').value;
-         var data = document.getElementById('data').value;
-
-         // Invia l'email utilizzando il template e i dati del modulo
-         emailjs.send("template_krfrkie", "template_krfrkie", {  // Usa il tuo Service ID
-             from_name: nome,
-             parrucchiere: parrucchiere,
-             data: data,
-             ora: ora
-         })
-         .then(function(response) {
-             console.log("Email inviata con successo", response);
-             alert("Prenotazione effettuata con successo!");
-         }, function(error) {
-             console.log("Errore nell'invio dell'email", error);
-             alert("C'è stato un problema nell'invio della prenotazione.");
-         });
-     });
- </script>
-</body>
 
 
 </html>
@@ -592,9 +565,6 @@
     </div>
 </section>
    
-
-
-
 <!DOCTYPE html>
 <html lang="it">
 
@@ -614,3 +584,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+
+
+<script type="text/javascript">
+    // Inizializza EmailJS con il tuo user ID
+    (function() {
+      emailjs.init("service_0y6yz2j"); // Sostituisci con il tuo User ID di EmailJS
+    })();
+  
+    // Aggiungi l'evento di invio del modulo
+    document.getElementById('booking-form').addEventListener('submit', function(event) {
+      event.preventDefault();  // Impedisce il comportamento predefinito del modulo (rinfrescare la pagina)
+  
+      // Raccogli i dati del modulo
+      var name = document.getElementById('name').value;
+      var service = document.getElementById('service').value;
+      var time = document.getElementById('time').value;
+      var date = document.getElementById('date').value;
+  
+      // Usa EmailJS per inviare l'email
+      emailjs.sendForm('service_0y6yz2jd', 'template_krfrkie', this)  // Sostituisci con il tuo service_id e template_id
+        .then(function(response) {
+          console.log('Email inviata con successo:', response);
+          alert('Prenotazione completata! Riceverai una conferma via email.');
+        }, function(error) {
+          console.error('Errore nell\'invio dell\'email:', error);
+          alert('C\'è stato un errore nell\'invio della prenotazione.');
+        });
+    });
+  </script>
+  
